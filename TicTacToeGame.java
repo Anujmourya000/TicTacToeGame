@@ -17,7 +17,15 @@ public class TicTacToeGame {
 		}
 		return board;
 	}
+	
+	private static char chooseLetter() {
+		Scanner sc = new Scanner(System.in);
+		char input = sc.next().toUpperCase().charAt(0);
+		return input;
+	}
 	public static void main(String[] args) {
 		createBoard();
+		chooseLetter();
+		System.out.println("entered symbol is: "+chooseLetter());
 	}
 }
