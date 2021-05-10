@@ -19,8 +19,34 @@ public class TicTacToeGame {
 		}
 	}
 	
-	
+	/**
+	 *  @description Method for choosing letter
+	 *  @param None
+	 *  
+	 */
+	private static char chooseLetter() {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("enter the X or O");
+		char input = sc.next().toUpperCase().charAt(0);
+		if(input == 'X') {
+			System.out.println("choosen symbol is: "+input);
+			System.out.println("choosen symbol by computer is: O");
+		}
+		else if(input == 'O'){
+			System.out.println("choosen symbol is: "+input);
+			System.out.println("choosen symbol by computer is: X");
+		}
+		else {
+			System.out.println("Invalid symbol");
+		}
+		return input;
+	}
 
+	/**
+	 *  @description Method for making a move
+	 *  @param None
+	 *  
+	 */
 	public static void makeMove(char[][] gameBoard, int playerPos, String user) {
 
 		char symbol = ' ';
@@ -65,6 +91,11 @@ public class TicTacToeGame {
 
 	}
 	
+	/**
+	 *  @description Method for Toss play
+	 *  @param None
+	 *  
+	 */
 	public static void tossPlay() {
 	    int player;
 	    Scanner sc = new Scanner(System.in);
@@ -80,12 +111,43 @@ public class TicTacToeGame {
 	    }
 	}
 	
+	/**
+	 *  @description Method for check winner
+	 *  @param None
+	 *  
+	 */
+	public static void checkWinner(char[][] gameBoard) {
+
+		if (gameBoard[0][0] == 'X' && gameBoard[0][2] == 'X' && gameBoard[0][4] == 'X'
+				|| gameBoard[1][0] == 'X' && gameBoard[1][2] == 'X' && gameBoard[1][4] == 'X'
+				|| gameBoard[2][0] == 'X' && gameBoard[2][2] == 'X' && gameBoard[2][4] == 'X'
+				|| gameBoard[0][0] == 'X' && gameBoard[1][0] == 'X' && gameBoard[2][0] == 'X'
+				|| gameBoard[0][2] == 'X' && gameBoard[1][2] == 'X' && gameBoard[2][2] == 'X'
+				|| gameBoard[0][4] == 'X' && gameBoard[1][4] == 'X' && gameBoard[2][4] == 'X'
+				|| gameBoard[0][0] == 'X' && gameBoard[1][2] == 'X' && gameBoard[2][4] == 'X'
+				|| gameBoard[0][4] == 'X' && gameBoard[1][2] == 'X' && gameBoard[2][0] == 'X') {
+
+			System.out.println("Player wins");
+
+		} else if (gameBoard[0][0] == 'O' && gameBoard[0][2] == 'O' && gameBoard[0][4] == 'O'
+				|| gameBoard[1][0] == 'O' && gameBoard[1][2] == 'O' && gameBoard[1][4] == 'O'
+				|| gameBoard[2][0] == 'O' && gameBoard[2][2] == 'O' && gameBoard[2][4] == 'O'
+				|| gameBoard[0][0] == 'O' && gameBoard[1][0] == 'O' && gameBoard[2][0] == 'O'
+				|| gameBoard[0][2] == 'O' && gameBoard[1][2] == 'O' && gameBoard[2][2] == 'O'
+				|| gameBoard[0][4] == 'O' && gameBoard[1][4] == 'O' && gameBoard[2][4] == 'O'
+				|| gameBoard[0][0] == 'O' && gameBoard[1][2] == 'O' && gameBoard[2][4] == 'O'
+				|| gameBoard[0][4] == 'O' && gameBoard[1][2] == 'O' && gameBoard[2][0] == 'O') {
+
+			System.out.println("computer Wins");
+		}
+	}
 
 	public static void main(String[] args) {
 
 		char[][] gameBoard = { { '_', '|', '_', '|', '_' }, { '_', '|', '_', '|', '_' }, { ' ', '|', ' ', '|', ' ' } };
 		printBoard(gameBoard);
-
+		
+		chooseLetter();
 		tossPlay();
 		
 		while (true) {
@@ -108,6 +170,7 @@ public class TicTacToeGame {
 			makeMove(gameBoard, cpuPos, "computer");
 
 			printBoard(gameBoard);
+			checkWinner(gameBoard);
 			
 
 		}
